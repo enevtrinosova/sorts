@@ -54,7 +54,7 @@ const mergeTwoArrays = (first: number[], second: number[]): number[] => {
     return result;
 }
 
-const mergeSort = (array: number[]): number[] => {
+export const mergeSort = (array: number[]): number[] => {
     if (array.length < 2) {
         return array;
     }

@@ -56,7 +56,7 @@ const findPartition = (a: number[]): {array: number[], partition: number} => {
     }
 }
 
-const quickSort = (array: number[]): number[] => {
+export const quickSort = (array: number[]): number[] => {
     if (array.length < 2) {
         return array;
     }
