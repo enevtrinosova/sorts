@@ -80,3 +80,37 @@ export const mergeSort = (array: number[]): number[] => {
         return mergeTwoArrays(firstPart, secondPart);
     }
 }
+
+export const findKPartition = (nums, k) => {
+    if (nums.length < 2) {
+        return nums[0];
+    }
+
+    if (nums.length === 2) {
+        const sorted = sortArrayOfTwo(nums);
+        return sorted[k];
+    }
+
+    if (nums.length === 3) {
+        const sorted = sortArrayOfThree(nums);
+        return sorted[k];
+    }
+
+    const { array: arrayWithPartition, partition } = findPartition(nums);
+
+    if (k === partition) {
+        return arrayWithPartition[k];
+    }
+
+    if (k < partition) {
+        const firstPart = arrayWithPartition.slice(0, partition);
+        return findKPartition(firstPart, k);
+    }
+
+    if (k > partition) {
+        const secondPart = arrayWithPartition.slice(partition + 1);
+        const firstPartLength = nums.length - secondPart.length;
+        const newPartition = k - firstPartLength;
+        return findKPartition(secondPart, newPartition);
+    }
+}
